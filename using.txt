@@ -1,0 +1,4 @@
+Сетевой менеджер
+https://godot-ru.readthedocs.io/ru/4.x/tutorials/networking/high_level_multiplayer.html
+https://steamcommunity.com/sharedfiles/filedetails/?id=3309120033
+https://habr.com/ru/articles/670238/

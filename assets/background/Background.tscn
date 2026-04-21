@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bn4q0t7x6hq4a"]
+
+[ext_resource type="Texture2D" uid="uid://buerioqm5807v" path="res://assets/background/Background.png" id="1_2amsb"]
+
+[node name="Background" type="TextureRect" unique_id=922089274]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="TextureRect" parent="." unique_id=1346482246]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2amsb")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true

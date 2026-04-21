@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cxce1euljc53v"]
 
 [ext_resource type="Script" uid="uid://chxk5c2qtvlqb" path="res://src/world/main.gd" id="1_6744j"]
+[ext_resource type="Texture2D" uid="uid://buerioqm5807v" path="res://assets/background/Background.png" id="2_wjyfs"]
 
 [node name="Game" type="Node2D" unique_id=2001075052]
 script = ExtResource("1_6744j")
@@ -8,3 +9,13 @@ script = ExtResource("1_6744j")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=450272339]
 _spawnable_scenes = PackedStringArray("uid://bfedh0h70aydb")
 spawn_path = NodePath("..")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=329636345]
+scroll_offset = Vector2(508, 318)
+repeat_size = Vector2(128, 128)
+repeat_times = 30
+
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1271630958]
+position = Vector2(899, 501)
+texture = ExtResource("2_wjyfs")
+centered = false

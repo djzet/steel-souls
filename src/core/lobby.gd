@@ -6,20 +6,24 @@ signal connection_failed
 const PORT = 7777
 const MAX_CLIENTS = 2
 const MAIN_SCENE = "res://src/world/Main.tscn"
+const MENU_SCENE = "res://src/ui/menu/MainMenu.tscn"
 
 var players = {}
 var player_info = {"name": "Souls"}
 var players_ready = 0
 
-func _ready():
+func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.connected_to_server.connect(_on_connection_ok)
 	multiplayer.connection_failed.connect(_on_connection_fail)
 	multiplayer.server_disconnected.connect(_on_connection_fail)
 
 func create_game():
+	disconnect_game()
 	var peer = ENetMultiplayerPeer.new()
-	if peer.create_server(PORT, MAX_CLIENTS) != OK: return ERR_CANT_CREATE
+	var error = peer.create_server(PORT, MAX_CLIENTS)
+	if error != OK: 
+		return error
 	multiplayer.multiplayer_peer = peer
 	players[1] = player_info
 	return OK
@@ -35,30 +39,48 @@ func load_game(path):
 	get_tree().change_scene_to_file(path)
 
 @rpc("any_peer", "call_local", "reliable")
-func player_ready():
+func player_ready() -> void:
 	if multiplayer.is_server():
 		players_ready += 1
 		if players_ready == players.size():
-			get_node("/root/Game").start_game()
+			var game_node = get_tree().root.get_node_or_null("Game")
+			if game_node:
+				game_node.start_game()
 			players_ready = 0
 
 @rpc("any_peer", "reliable")
-func _register_player(info):
+func _register_player(info) -> void:
 	var id = multiplayer.get_remote_sender_id()
 	players[id] = info
 	player_connected.emit(id, info)
 	if multiplayer.is_server() and players.size() == MAX_CLIENTS:
 		load_game.rpc(MAIN_SCENE)
 
-func _on_peer_connected(id):
+func _on_peer_connected(id) -> void:
 	_register_player.rpc_id(id, player_info)
 
-func _on_connection_ok():
+func _on_connection_ok() -> void:
 	var id = multiplayer.get_unique_id()
 	players[id] = player_info
 	_register_player.rpc_id(1, player_info)
 
-func _on_connection_fail():
+func _on_connection_fail() -> void:
+	disconnect_game()
+	if get_tree().current_scene.name != "MainMenu":
+		get_tree().change_scene_to_file(MENU_SCENE)
+	connection_failed.emit()
+
+func start_solo() -> void:
+	disconnect_game()
+	var peer = ENetMultiplayerPeer.new()
+	peer.create_server(PORT, 1)
+	multiplayer.multiplayer_peer = peer
+	players[1] = player_info
+	load_game(MAIN_SCENE)
+
+func disconnect_game() -> void:
+	if multiplayer.multiplayer_peer:
+		multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	players.clear()
-	connection_failed.emit()
+	players_ready = 0
