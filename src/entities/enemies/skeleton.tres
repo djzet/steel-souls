@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://wjft53wlrutn"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_7e2vd"]
+[ext_resource type="Texture2D" uid="uid://bl2n6eevwbavx" path="res://assets/sprites/enemies/pack2/tiny-clans-sword-skeleton/tiny_clans_-_skeleton_swordsman.png" id="2_28g2b"]
+
+[resource]
+script = ExtResource("1_7e2vd")
+texture = ExtResource("2_28g2b")
+tier = 2
+health = 10
+damage = 2

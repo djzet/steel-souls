@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://c1fb5hrinh6iv"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_doyp8"]
+[ext_resource type="Texture2D" uid="uid://6m8hbqv7avf1" path="res://assets/sprites/enemies/pack1/tiny-clans-sword-goblin/tiny_clans_-_goblin_swordsman.png" id="2_hqpy2"]
+
+[resource]
+script = ExtResource("1_doyp8")
+texture = ExtResource("2_hqpy2")

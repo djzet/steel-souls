@@ -1,21 +1,86 @@
 [gd_scene format=3 uid="uid://cxce1euljc53v"]
 
 [ext_resource type="Script" uid="uid://chxk5c2qtvlqb" path="res://src/world/main.gd" id="1_6744j"]
-[ext_resource type="Texture2D" uid="uid://buerioqm5807v" path="res://assets/background/Background.png" id="2_wjyfs"]
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="2_lkmxr"]
+[ext_resource type="Texture2D" uid="uid://diqxoc1cjigxk" path="res://assets/background/BackgroundMap.png" id="3_00yv5"]
+[ext_resource type="PackedScene" uid="uid://dlagoqx5epdu8" path="res://src/ui/hud/TimerHud.tscn" id="3_sh1f0"]
+[ext_resource type="Resource" uid="uid://b0yeq8pb2jlev" path="res://src/entities/enemies/bandit_1.tres" id="3_x4s6c"]
+[ext_resource type="Resource" uid="uid://j5k2530itms2" path="res://src/entities/enemies/bandit_2.tres" id="4_wig4k"]
+[ext_resource type="Resource" uid="uid://cxsar822xhcu3" path="res://src/entities/enemies/demon.tres" id="5_wpbi0"]
+[ext_resource type="Resource" uid="uid://bb0e4x2g4bnra" path="res://src/entities/enemies/dwarf.tres" id="6_2qe8s"]
+[ext_resource type="Resource" uid="uid://cw63fg0qq1o0n" path="res://src/entities/enemies/elf.tres" id="7_r1mqv"]
+[ext_resource type="Resource" uid="uid://c1fb5hrinh6iv" path="res://src/entities/enemies/goblin.tres" id="8_88yo2"]
+[ext_resource type="Resource" uid="uid://t8t8gxb6h7rt" path="res://src/entities/enemies/kobold.tres" id="9_egdgl"]
+[ext_resource type="Resource" uid="uid://da1x2mmqdob3m" path="res://src/entities/enemies/lizardkin.tres" id="10_rfnwy"]
+[ext_resource type="Resource" uid="uid://b8tcajb57uus4" path="res://src/entities/enemies/orc.tres" id="11_hk76g"]
+[ext_resource type="Resource" uid="uid://dw8j33y7d3x54" path="res://src/entities/enemies/ratfolk.tres" id="12_6gg85"]
+[ext_resource type="Resource" uid="uid://wjft53wlrutn" path="res://src/entities/enemies/skeleton.tres" id="13_m5sk6"]
+[ext_resource type="Resource" uid="uid://bv3k73yv4j6hs" path="res://src/entities/enemies/swordsman.tres" id="14_0scia"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_00yv5"]
+properties/0/path = NodePath(".:time_elapsed")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0brur"]
+texture = ExtResource("3_00yv5")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cqe7m"]
+sources/0 = SubResource("TileSetAtlasSource_0brur")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cfsd3"]
+texture = ExtResource("3_00yv5")
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_87eg3"]
+sources/0 = SubResource("TileSetAtlasSource_cfsd3")
 
 [node name="Game" type="Node2D" unique_id=2001075052]
 script = ExtResource("1_6744j")
+all_enemy_types = Array[ExtResource("2_lkmxr")]([ExtResource("3_x4s6c"), ExtResource("4_wig4k"), ExtResource("5_wpbi0"), ExtResource("6_2qe8s"), ExtResource("7_r1mqv"), ExtResource("8_88yo2"), ExtResource("9_egdgl"), ExtResource("10_rfnwy"), ExtResource("11_hk76g"), ExtResource("12_6gg85"), ExtResource("13_m5sk6"), ExtResource("14_0scia")])
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=450272339]
 _spawnable_scenes = PackedStringArray("uid://bfedh0h70aydb")
 spawn_path = NodePath("..")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=329636345]
-scroll_offset = Vector2(508, 318)
-repeat_size = Vector2(128, 128)
-repeat_times = 30
+[node name="TimerHud" parent="." unique_id=127761051 instance=ExtResource("3_sh1f0")]
 
-[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1271630958]
-position = Vector2(899, 501)
-texture = ExtResource("2_wjyfs")
-centered = false
+[node name="GameTimer" type="Timer" parent="." unique_id=1131095364]
+autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1907909261]
+replication_config = SubResource("SceneReplicationConfig_00yv5")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1705058244]
+tile_set = SubResource("TileSet_cqe7m")
+
+[node name="DecorLayer" type="TileMapLayer" parent="." unique_id=1265674600]
+tile_set = SubResource("TileSet_87eg3")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1104425052]
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="EnemyTimer" type="Timer" parent="." unique_id=72299400]
+wait_time = 2.0

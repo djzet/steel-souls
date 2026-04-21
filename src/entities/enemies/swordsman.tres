@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://bv3k73yv4j6hs"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_ifqn7"]
+[ext_resource type="Texture2D" uid="uid://xeuspg2778eo" path="res://assets/sprites/enemies/pack1/tiny-clans-swordsman/tiny_clans_-_human_swordsman.png" id="2_0vd4v"]
+
+[resource]
+script = ExtResource("1_ifqn7")
+texture = ExtResource("2_0vd4v")

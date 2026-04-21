@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://b8tcajb57uus4"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_mw37j"]
+[ext_resource type="Texture2D" uid="uid://c0v8lhpqn6p2r" path="res://assets/sprites/enemies/pack2/tiny-clans-sword-orc/tiny_clans_orc_sword.png" id="2_2o40h"]
+
+[resource]
+script = ExtResource("1_mw37j")
+texture = ExtResource("2_2o40h")
+tier = 2
+health = 10
+damage = 2

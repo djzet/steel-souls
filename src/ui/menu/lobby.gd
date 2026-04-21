@@ -42,6 +42,5 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://src/ui/menu/MainMenu.tscn")
 
 func _on_server_disconnected() -> void:
-	print("СИСТЕМА: Хост закрыл сервер. Возврат в меню.")
 	Lobby.disconnect_game()
 	get_tree().change_scene_to_file("res://src/ui/menu/MainMenu.tscn")

@@ -9,6 +9,7 @@ var is_dead: bool = false
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var camera: Camera2D = $Camera2D
+@onready var light: PointLight2D = $PointLight2D
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -21,9 +22,11 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		camera.enabled = true
 		camera.make_current()
+		light.energy = 0.5
 	else:
 		camera.enabled = false
 		modulate.a = 0.5
+		light.energy = 0.5
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority() or is_dead: 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://cxsar822xhcu3"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_866tv"]
+[ext_resource type="Texture2D" uid="uid://b43iw361axyq8" path="res://assets/sprites/enemies/pack3/tiny_clans_demon_sword/tiny_clans_demon_sword.png" id="2_32hgb"]
+
+[resource]
+script = ExtResource("1_866tv")
+texture = ExtResource("2_32hgb")
+tier = 3
+health = 15
+damage = 3

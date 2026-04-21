@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://da1x2mmqdob3m"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_1y8j8"]
+[ext_resource type="Texture2D" uid="uid://bhmsfkxhniy14" path="res://assets/sprites/enemies/pack4/tiny_clans_lizardkin_sword/tiny_clans_lizardkin_sword.png" id="2_g3wyc"]
+
+[resource]
+script = ExtResource("1_1y8j8")
+texture = ExtResource("2_g3wyc")
+tier = 4
+health = 20
+damage = 4

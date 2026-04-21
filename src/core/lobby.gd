@@ -11,6 +11,7 @@ const MENU_SCENE = "res://src/ui/menu/MainMenu.tscn"
 var players = {}
 var player_info = {"name": "Souls"}
 var players_ready = 0
+var world_seed: int = 0
 
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected)
@@ -20,10 +21,10 @@ func _ready() -> void:
 
 func create_game():
 	disconnect_game()
+	world_seed = randi() 
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, MAX_CLIENTS)
-	if error != OK: 
-		return error
+	if error != OK: return error
 	multiplayer.multiplayer_peer = peer
 	players[1] = player_info
 	return OK
@@ -35,7 +36,9 @@ func join_game(ip):
 	return OK
 
 @rpc("call_local", "reliable")
-func load_game(path):
+func load_game(path, incoming_seed: int = 0):
+	if incoming_seed != 0:
+		world_seed = incoming_seed
 	get_tree().change_scene_to_file(path)
 
 @rpc("any_peer", "call_local", "reliable")
@@ -54,7 +57,7 @@ func _register_player(info) -> void:
 	players[id] = info
 	player_connected.emit(id, info)
 	if multiplayer.is_server() and players.size() == MAX_CLIENTS:
-		load_game.rpc(MAIN_SCENE)
+		load_game.rpc(MAIN_SCENE, world_seed)
 
 func _on_peer_connected(id) -> void:
 	_register_player.rpc_id(id, player_info)
@@ -72,6 +75,8 @@ func _on_connection_fail() -> void:
 
 func start_solo() -> void:
 	disconnect_game()
+	world_seed = randi()
+	
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT, 1)
 	multiplayer.multiplayer_peer = peer

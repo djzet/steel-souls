@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://dw8j33y7d3x54"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_uhrb2"]
+[ext_resource type="Texture2D" uid="uid://8qbl06k5mq7" path="res://assets/sprites/enemies/pack4/tiny_clans_ratfolk_sword/tiny_clans_ratfolk_sword.png" id="2_5bty8"]
+
+[resource]
+script = ExtResource("1_uhrb2")
+texture = ExtResource("2_5bty8")
+tier = 4
+health = 20
+damage = 4

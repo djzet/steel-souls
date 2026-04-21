@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://b0yeq8pb2jlev"]
+
+[ext_resource type="Script" uid="uid://dgxqgqja3gv3m" path="res://data/enemies/enemy_resource.gd" id="1_8nwp4"]
+[ext_resource type="Texture2D" uid="uid://uw10rnk0um3v" path="res://assets/sprites/enemies/pack6/tiny_clans_bandit_1_club/tiny_clans_bandit_1_club.png" id="2_e3wmn"]
+
+[resource]
+script = ExtResource("1_8nwp4")
+texture = ExtResource("2_e3wmn")
+tier = 6
+health = 30
+damage = 6
