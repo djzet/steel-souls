@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cuqtphky3t7iq"]
+
+[ext_resource type="Script" uid="uid://bcnda3p712wkn" path="res://src/ui/menu/lobby_menu.gd" id="1_xgce6"]
+[ext_resource type="PackedScene" uid="uid://bn4q0t7x6hq4a" path="res://assets/background/Background.tscn" id="2_2gexn"]
+
+[node name="LobbyMenu" type="Control" unique_id=2000741065]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xgce6")
+
+[node name="Background" parent="." unique_id=922089274 instance=ExtResource("2_2gexn")]
+z_index = -1
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1291520565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=775985569]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Host" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1215845384]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Создать игру"
+icon_alignment = 1
+language = "ru_RU"
+
+[node name="Join" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2050842821]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Присоединиться"
+icon_alignment = 1
+language = "ru_RU"
+
+[node name="IPInput" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=2137533798]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Введите IP Хоста"
+alignment = 1
+language = "ru-RU"
+
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer" unique_id=972600938]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Назад"
+icon_alignment = 1
+language = "ru_RU"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

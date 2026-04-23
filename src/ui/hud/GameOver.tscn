@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://kn3hd10tnplg"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=1919468069]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=41191114]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1468783143]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1781262536]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1308958672]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Вы погибли, но душа нет..."
+language = "ru-RU"
+
+[node name="Restart" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1253471233]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Начать заново"
+language = "ru-RU"

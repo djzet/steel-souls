@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bigdjosatk3ce"]
+
+[ext_resource type="Script" uid="uid://cw50xfmq3cuxf" path="res://src/ui/hud/health_hud.gd" id="1_7h468"]
+[ext_resource type="Texture2D" uid="uid://cqtwhndvtm3lm" path="res://assets/sprites/hud/ui/06.png" id="2_gesnk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx5rv"]
+atlas = ExtResource("2_gesnk")
+region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsnjb"]
+atlas = ExtResource("2_gesnk")
+region = Rect2(0, 0, 32, 16)
+
+[node name="HealthHud" type="Control" unique_id=814809930]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1, 0)
+size_flags_horizontal = 4
+script = ExtResource("1_7h468")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1053184098]
+layout_mode = 1
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 256.0
+offset_bottom = 80.0
+theme_override_constants/separation = 10
+
+[node name="PlayerLabel" type="Label" parent="HBoxContainer" unique_id=1227610960]
+layout_mode = 2
+text = "Игрок1"
+language = "ru-RU"
+
+[node name="HealthBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=463848275]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 10.0
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_kx5rv")
+texture_progress = SubResource("AtlasTexture_fsnjb")

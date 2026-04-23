@@ -16,11 +16,19 @@
 [ext_resource type="Resource" uid="uid://dw8j33y7d3x54" path="res://src/entities/enemies/ratfolk.tres" id="12_6gg85"]
 [ext_resource type="Resource" uid="uid://wjft53wlrutn" path="res://src/entities/enemies/skeleton.tres" id="13_m5sk6"]
 [ext_resource type="Resource" uid="uid://bv3k73yv4j6hs" path="res://src/entities/enemies/swordsman.tres" id="14_0scia"]
+[ext_resource type="PackedScene" uid="uid://kn3hd10tnplg" path="res://src/ui/hud/GameOver.tscn" id="17_x4s6c"]
+[ext_resource type="PackedScene" uid="uid://bigdjosatk3ce" path="res://src/ui/hud/HealthHud.tscn" id="18_wig4k"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_00yv5"]
 properties/0/path = NodePath(".:time_elapsed")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:current_tier")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:world_seed")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0brur"]
 texture = ExtResource("3_00yv5")
@@ -57,18 +65,13 @@ texture = ExtResource("3_00yv5")
 [sub_resource type="TileSet" id="TileSet_87eg3"]
 sources/0 = SubResource("TileSetAtlasSource_cfsd3")
 
-[node name="Game" type="Node2D" unique_id=2001075052]
+[node name="Main" type="Node2D" unique_id=2001075052]
 script = ExtResource("1_6744j")
 all_enemy_types = Array[ExtResource("2_lkmxr")]([ExtResource("3_x4s6c"), ExtResource("4_wig4k"), ExtResource("5_wpbi0"), ExtResource("6_2qe8s"), ExtResource("7_r1mqv"), ExtResource("8_88yo2"), ExtResource("9_egdgl"), ExtResource("10_rfnwy"), ExtResource("11_hk76g"), ExtResource("12_6gg85"), ExtResource("13_m5sk6"), ExtResource("14_0scia")])
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=450272339]
-_spawnable_scenes = PackedStringArray("uid://bfedh0h70aydb")
+_spawnable_scenes = PackedStringArray("uid://bfedh0h70aydb", "uid://du5nlqpee8573")
 spawn_path = NodePath("..")
-
-[node name="TimerHud" parent="." unique_id=127761051 instance=ExtResource("3_sh1f0")]
-
-[node name="GameTimer" type="Timer" parent="." unique_id=1131095364]
-autostart = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1907909261]
 replication_config = SubResource("SceneReplicationConfig_00yv5")
@@ -82,5 +85,16 @@ tile_set = SubResource("TileSet_87eg3")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1104425052]
 color = Color(0.4, 0.4, 0.4, 1)
 
+[node name="GameTimer" type="Timer" parent="." unique_id=1131095364]
+autostart = true
+
 [node name="EnemyTimer" type="Timer" parent="." unique_id=72299400]
 wait_time = 2.0
+
+[node name="TimerHud" parent="." unique_id=127761051 instance=ExtResource("3_sh1f0")]
+
+[node name="Health" type="CanvasLayer" parent="." unique_id=2120037932]
+
+[node name="HealthHud" parent="Health" unique_id=814809930 instance=ExtResource("18_wig4k")]
+
+[node name="GameOver" parent="." unique_id=1919468069 instance=ExtResource("17_x4s6c")]

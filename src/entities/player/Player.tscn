@@ -7,17 +7,6 @@
 radius = 14.0
 height = 48.0
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vna0p"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Sprite2D:flip_h")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("AnimationPlayer:current_animation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-
 [sub_resource type="Animation" id="Animation_awdo7"]
 length = 0.001
 tracks/0/type = "value"
@@ -107,7 +96,6 @@ _data = {
 }
 
 [sub_resource type="Gradient" id="Gradient_awdo7"]
-offsets = PackedFloat32Array(0.74493927, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vna0p"]
@@ -117,6 +105,14 @@ height = 512
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vna0p"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=953293018]
 motion_mode = 1
@@ -132,13 +128,6 @@ hframes = 28
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=41609157]
 shape = SubResource("CapsuleShape2D_vna0p")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=204938339]
-replication_config = SubResource("SceneReplicationConfig_vna0p")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=438432514]
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=708128625]
 libraries/ = SubResource("AnimationLibrary_j0f6w")
 speed_scale = 0.5
@@ -146,3 +135,10 @@ speed_scale = 0.5
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=236687764]
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_vna0p")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=438432514]
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=204938339]
+replication_config = SubResource("SceneReplicationConfig_vna0p")

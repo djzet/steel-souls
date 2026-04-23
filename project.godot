@@ -144,7 +144,12 @@ exit={
 
 [layer_names]
 
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
 3d_physics/layer_2="player"
+2d_physics/layer_3="Enemies"
+2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Pickups"
 
 [physics]
 
@@ -154,7 +159,6 @@ exit={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
